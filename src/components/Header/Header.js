@@ -5,10 +5,22 @@ import s from './Header.scss';
 import withStyles from '../../decorators/withStyles';
 import Link from '../Link';
 import Navigation from '../Navigation';
+import NavStore from '../../stores/navStore';
 
+function getStateFromNavStore() {
+  "use strict";
+  return {
+    nav: NavStore.getList()
+  }
+}
 @withStyles(s)
 class Header extends Component {
-
+  constructor(props) {
+    super(props);
+    console.log(NavStore, 'navStore');
+    this.state = getStateFromNavStore();
+    console.log('state', this.state);
+  }
   render() {
     return (
       <div className={s.root}>
